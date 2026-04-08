@@ -85,17 +85,21 @@ Do not repeat these. Always move forward.`;
 /**
  * Generates a tour narrative segment for the given GPS coordinates.
  *
- * @param latitude  Current user latitude
- * @param longitude Current user longitude
- * @param history   All story segments told so far this session (newest last)
- * @param address   Human-readable street address from reverse geocoding (optional)
- * @returns         The generated narrative text
+ * @param latitude                 Current user latitude
+ * @param longitude                Current user longitude
+ * @param history                  All story segments told so far this session (newest last)
+ * @param address                  Human-readable street address from reverse geocoding (optional)
+ * @param totalStories             Total stories told this session (used for pacing)
+ * @param storiesAtCurrentLocation Stories told at the current location (used for wrap-up logic)
+ * @returns                        The generated narrative text
  */
 export async function generateStory(
   latitude: number,
   longitude: number,
   history: StoryEntry[],
-  address?: string
+  address?: string,
+  totalStories: number = 0,
+  storiesAtCurrentLocation: number = 0
 ): Promise<string> {
   // Format the history into a numbered list for the prompt.
   // We cap at the last 10 entries to keep the prompt a reasonable size.
@@ -110,7 +114,10 @@ export async function generateStory(
           )
           .join('\n');
 
-  const systemPrompt = SYSTEM_PROMPT_TEMPLATE.replace('[HISTORY]', historyText);
+  const systemPrompt = SYSTEM_PROMPT_TEMPLATE
+    .replace('[HISTORY]', historyText)
+    .replace('[COUNT]', String(totalStories))
+    .replace('[LOCATION_COUNT]', String(storiesAtCurrentLocation));
 
   const locationDescription = address
     ? `${address} (GPS: ${latitude.toFixed(6)}, ${longitude.toFixed(6)})`

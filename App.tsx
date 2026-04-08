@@ -413,8 +413,6 @@ export default function App() {
             <Text style={styles.errorText}>{errorMessage}</Text>
           )}
 
-          {/* map goes here */}
-
           {/* Latest narration */}
           <View style={[styles.card, styles.storyCard]}>
             <Text style={styles.cardLabel}>LATEST NARRATION</Text>
@@ -625,20 +623,21 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   scrollContent: {
-    paddingBottom: 8,
+    paddingTop:    8,
+    paddingBottom: 16,
   },
 
   // ── Pills ──
   pillRow: {
     flexDirection:    'row',
     paddingHorizontal: 16,
-    marginBottom:     4,
+    marginBottom:     8,
   },
   statusRow: {
     flexDirection:    'row',
     alignItems:       'center',
     paddingHorizontal: 16,
-    marginBottom:     6,
+    marginBottom:     12,
     gap:              8,
   },
   pill: {
@@ -664,7 +663,7 @@ const styles = StyleSheet.create({
     color:             colors.error,
     fontSize:          12,
     paddingHorizontal: 16,
-    marginBottom:      6,
+    marginBottom:      12,
     lineHeight:        18,
   },
 
@@ -675,21 +674,22 @@ const styles = StyleSheet.create({
     borderColor:      colors.border,
     borderRadius:     14,
     marginHorizontal: 16,
-    marginTop:        10,
-    padding:          14,
+    marginTop:        14,
+    padding:          16,
   },
   cardLabel: {
     color:         colors.accent,
     fontSize:      11,
     fontWeight:    '500',
     letterSpacing: 1.1,
-    marginBottom:  6,
+    marginBottom:  10,
     textTransform: 'uppercase',
   },
 
   // ── Narration card ──
   storyCard: {
-    maxHeight: 160,
+    minHeight: 200,
+    maxHeight: 280,
   },
   storyScroll: {},
   storyText: {
@@ -700,13 +700,14 @@ const styles = StyleSheet.create({
 
   // ── Story log ──
   logCard: {
-    paddingBottom: 6,
+    marginTop:     20,
+    paddingBottom: 8,
   },
   logEntry: {
     borderTopWidth: 1,
     borderTopColor: colors.border,
-    paddingTop:     8,
-    marginTop:      4,
+    paddingTop:     10,
+    marginTop:      6,
   },
   logEntryLast: {},
   logPlace: {
