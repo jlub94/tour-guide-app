@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "Bash(npm info:*)",
+      "Bash(python3 -c \"import sys,json; v=json.load\\(sys.stdin\\); print\\('\\\\n'.join\\(v[-10:]\\)\\)\")",
+      "Bash(python3 -c \"import sys,json; v=json.load\\(sys.stdin\\); print\\('\\\\n'.join\\(v[-5:]\\)\\)\")",
+      "Bash(npx expo:*)",
+      "Bash(npx tsc:*)",
+      "Bash(node:*)"
+    ]
+  }
+}
